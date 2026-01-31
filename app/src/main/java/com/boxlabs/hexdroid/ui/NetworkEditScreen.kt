@@ -37,6 +37,7 @@ import androidx.compose.ui.unit.dp
 import com.boxlabs.hexdroid.CapPrefs
 import com.boxlabs.hexdroid.ClientCertDraft
 import com.boxlabs.hexdroid.ClientCertFormat
+import com.boxlabs.hexdroid.EncodingHelper
 import com.boxlabs.hexdroid.SaslMechanism
 import com.boxlabs.hexdroid.UiState
 import com.boxlabs.hexdroid.data.AutoJoinChannel
@@ -133,6 +134,8 @@ fun NetworkEditScreen(
     var serverPassword by remember(n0.id, n0.serverPassword) { mutableStateOf(n0.serverPassword ?: "") }
     var autoConnect by remember(n0.id) { mutableStateOf(n0.autoConnect) }
     var autoReconnect by remember(n0.id) { mutableStateOf(n0.autoReconnect) }
+    var encoding by remember(n0.id) { mutableStateOf(n0.encoding) }
+    var encodingExpanded by remember { mutableStateOf(false) }
 
     // Identity
     var nick by remember(n0.id) { mutableStateOf(n0.nick) }
@@ -288,7 +291,11 @@ fun NetworkEditScreen(
                                 caps = caps,
                                 autoJoin = aj,
                                 autoConnect = autoConnect,
-                                autoReconnect = autoReconnect
+                                autoReconnect = autoReconnect,
+                                autoCommandDelaySeconds = postDelayText.toIntOrNull() ?: 0,
+                                serviceAuthCommand = serviceAuthCommand.trim().takeIf { it.isNotBlank() },
+                                autoCommandsText = autoCommandsText,
+                                encoding = encoding
                             ),
                             certDraft,
                             removeClientCert
@@ -614,6 +621,85 @@ fun NetworkEditScreen(
                     onValueChange = { autoJoinText = it },
                     minLines = 4,
                     modifier = Modifier.fillMaxWidth()
+                )
+            }
+
+            CardSection("Post-connect Commands") {
+                OutlinedTextField(
+                    value = postDelayText,
+                    onValueChange = { postDelayText = it.filter { c -> c.isDigit() } },
+                    label = { Text("Delay before commands (seconds)") },
+                    modifier = Modifier.fillMaxWidth(),
+                    supportingText = {
+                        Text("Wait this many seconds after connecting before running commands")
+                    }
+                )
+
+                OutlinedTextField(
+                    value = serviceAuthCommand,
+                    onValueChange = { serviceAuthCommand = it },
+                    label = { Text("Service auth command") },
+                    modifier = Modifier.fillMaxWidth(),
+                    supportingText = {
+                        Text("e.g., /msg NickServ IDENTIFY password")
+                    }
+                )
+
+                Text(
+                    "Additional commands (one per line):",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+                OutlinedTextField(
+                    value = autoCommandsText,
+                    onValueChange = { autoCommandsText = it },
+                    minLines = 3,
+                    modifier = Modifier.fillMaxWidth(),
+                    supportingText = {
+                        Text("Commands to run after connecting, e.g., /join #channel")
+                    }
+                )
+            }
+
+            CardSection("Character Encoding") {
+                ExposedDropdownMenuBox(
+                    expanded = encodingExpanded,
+                    onExpandedChange = { encodingExpanded = it }
+                ) {
+                    OutlinedTextField(
+                        value = EncodingHelper.ENCODING_DISPLAY_NAMES[encoding] ?: encoding,
+                        onValueChange = {},
+                        readOnly = true,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .menuAnchor(),
+                        label = { Text("Encoding") },
+                        trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = encodingExpanded) }
+                    )
+                    ExposedDropdownMenu(
+                        expanded = encodingExpanded,
+                        onDismissRequest = { encodingExpanded = false }
+                    ) {
+                        EncodingHelper.ENCODING_DISPLAY_NAMES.forEach { (key, label) ->
+                            DropdownMenuItem(
+                                text = { Text(label) },
+                                onClick = {
+                                    encoding = key
+                                    encodingExpanded = false
+                                }
+                            )
+                        }
+                    }
+                }
+                Text(
+                    when (encoding) {
+                        "auto" -> "Recommended. Starts with UTF-8 and auto-detects other encodings."
+                        "windows-1251" -> "Use for Bulgarian, Russian, Serbian, and other Cyrillic networks."
+                        "UTF-8" -> "Standard Unicode. Works with most modern IRC networks."
+                        else -> "Manual encoding selection for legacy networks."
+                    },
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
             }
 

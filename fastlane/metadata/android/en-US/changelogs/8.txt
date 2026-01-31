@@ -1,0 +1,5 @@
+Added character encoding support (auto-detect, windows-1251, KOI8-R, etc.)
+Added post-connect commands with configurable delay
+Enhanced Cyrillic CASEMAPPING support (not standard, but noticed)
+Improved network configuration UI
+Various bug fixes and stability improvements

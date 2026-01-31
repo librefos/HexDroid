@@ -1,0 +1,1 @@
+A lightweight, modern IRC client for Android

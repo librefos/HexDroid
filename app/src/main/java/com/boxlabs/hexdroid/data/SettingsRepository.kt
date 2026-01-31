@@ -393,6 +393,12 @@ class SettingsRepository(private val ctx: Context) {
                             ig.optString(j)?.trim()?.takeIf { it.isNotBlank() }
                         }.distinctBy { it.lowercase() }
                     } ?: emptyList(),
+
+                    autoCommandDelaySeconds = o.optInt("autoCommandDelaySeconds", 0),
+                    serviceAuthCommand = o.optString("serviceAuthCommand", "").takeIf { it.isNotBlank() },
+                    autoCommandsText = o.optString("autoCommandsText", ""),
+
+                    encoding = o.optString("encoding", "auto"),
                 )
             }
             out
@@ -447,6 +453,12 @@ class SettingsRepository(private val ctx: Context) {
             o.put("autoConnect", n.autoConnect)
             o.put("autoReconnect", n.autoReconnect)
             o.put("ignoreList", JSONArray(n.ignoredNicks))
+
+            o.put("autoCommandDelaySeconds", n.autoCommandDelaySeconds)
+            o.put("serviceAuthCommand", n.serviceAuthCommand ?: "")
+            o.put("autoCommandsText", n.autoCommandsText)
+
+            o.put("encoding", n.encoding)
             arr.put(o)
         }
         return arr
@@ -462,7 +474,7 @@ class SettingsRepository(private val ctx: Context) {
             allowInvalidCerts = true,
             serverPassword = null,
             nick = "HexDroidUser",
-            altNick = "HexDroidUser_",
+            altNick = "HexDroidUser",
             username = "hexdroid",
             realname = "HexDroid IRC for Android",
             saslEnabled = false,
@@ -481,7 +493,7 @@ class SettingsRepository(private val ctx: Context) {
             allowInvalidCerts = false,
             serverPassword = null,
             nick = "HexDroidUser",
-            altNick = "HexDroidUser_",
+            altNick = "HexDroidUser",
             username = "hexdroid",
             realname = "HexDroid IRC for Android",
             saslEnabled = false,
@@ -500,7 +512,7 @@ class SettingsRepository(private val ctx: Context) {
             allowInvalidCerts = false,
             serverPassword = null,
             nick = "HexDroid",
-            altNick = "HexDroidUser_",
+            altNick = "HexDroidUser",
             username = "hexdroid",
             realname = "HexDroid IRC for Android",
             saslEnabled = false,
@@ -514,12 +526,12 @@ class SettingsRepository(private val ctx: Context) {
             id = "Undernet",
             name = "Undernet",
             host = "irc.undernet.org",
-            port = 6667,
-            useTls = false,
+            port = 6697,
+            useTls = true,
             allowInvalidCerts = false,
             serverPassword = null,
             nick = "HexDroid",
-            altNick = "HexDroidUser_",
+            altNick = "HexDroidUser",
             username = "hexdroid",
             realname = "HexDroid IRC for Android",
             saslEnabled = false,
@@ -533,12 +545,12 @@ class SettingsRepository(private val ctx: Context) {
             id = "EFnet",
             name = "EFnet",
             host = "irc.efnet.org",
-            port = 6667,
-            useTls = false,
+            port = 6697,
+            useTls = true,
             allowInvalidCerts = false,
             serverPassword = null,
             nick = "HexDroid",
-            altNick = "HexDroidUser_",
+            altNick = "HexDroidUser",
             username = "hexdroid",
             realname = "HexDroid IRC for Android",
             saslEnabled = false,
@@ -552,12 +564,12 @@ class SettingsRepository(private val ctx: Context) {
             id = "QuakeNet",
             name = "QuakeNet",
             host = "irc.quakenet.org",
-            port = 6667,
-            useTls = false,
+            port = 6697,
+            useTls = true,
             allowInvalidCerts = false,
             serverPassword = null,
             nick = "HexDroid",
-            altNick = "HexDroidUser_",
+            altNick = "HexDroidUser",
             username = "hexdroid",
             realname = "HexDroid IRC for Android",
             saslEnabled = false,
@@ -571,12 +583,12 @@ class SettingsRepository(private val ctx: Context) {
             id = "DALnet",
             name = "DALnet",
             host = "irc.dal.net",
-            port = 6667,
-            useTls = false,
+            port = 6697,
+            useTls = true,
             allowInvalidCerts = false,
             serverPassword = null,
             nick = "HexDroid",
-            altNick = "HexDroidUser_",
+            altNick = "HexDroidUser",
             username = "hexdroid",
             realname = "HexDroid IRC for Android",
             saslEnabled = false,
@@ -645,6 +657,13 @@ data class NetworkProfile(
     val autoCommandDelaySeconds: Int = 0,
     val serviceAuthCommand: String? = null,
     val autoCommandsText: String = "",
+
+    /**
+     * Character encoding for this network.
+     * - "auto" = try UTF-8, auto-detect non-UTF-8 encodings
+     * - Or explicit: "UTF-8", "windows-1251", "ISO-8859-1", etc.
+     */
+    val encoding: String = "auto",
 ) {
     fun toIrcConfig(
         saslPasswordOverride: String? = null,
@@ -670,7 +689,8 @@ data class NetworkProfile(
             sasl = sasl,
             clientCert = tlsClientCert,
             capPrefs = caps,
-            autoJoin = autoJoin
+            autoJoin = autoJoin,
+            encoding = encoding
         )
     }
 }

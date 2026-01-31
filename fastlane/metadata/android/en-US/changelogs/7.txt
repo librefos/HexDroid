@@ -1,0 +1,7 @@
+Support older Android versions, from Android 8 (per feedback)
+UI improvements
+Battery improvements
+Added "mIRC" colour code toggle
+Tidied up the Network settings window.
+Improved keyboard, return key implemented to send 400 chars per line rather than two send buttons.
+fix CTCP replies

@@ -1,0 +1,18 @@
+HexDroid is a modern, lightweight IRC client for Android that lets you connect to your favourite IRC networks, join channels, chat with friends, and stay up to date with a clean, fast Material Design UI.
+
+Features:
+
+* Multiple network support - connect to several IRC networks simultaneously
+* IRCv3 capabilities - message-tags, server-time, echo-message, SASL authentication, and more
+* TLS/SSL support - secure connections with optional client certificates
+* Auto-connect and auto-join - automatically connect to networks and join channels on startup
+* SASL authentication - PLAIN, EXTERNAL (client cert), and SCRAM-SHA-256 mechanisms
+* Post-connect commands - run custom commands after connecting
+* Character encoding support - auto-detect or manually set encoding (UTF-8, windows-1251, etc.)
+* Nick highlighting and notifications - get notified when someone mentions you
+* Channel and private message logging
+* Ignore list - filter out unwanted messages
+* Lag indicator - monitor connection quality
+* Clean Material Design 3 interface
+
+HexDroid is free and open source software, licensed under GPLv3.

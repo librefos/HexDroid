@@ -1,3 +1,2 @@
-# HexDroid 1.5.1
-# Initital release as GPLv3
+# HexDroid 1.5.2
 An IRC Client for Android

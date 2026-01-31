@@ -32,12 +32,18 @@ import kotlinx.coroutines.withContext
 import java.io.BufferedReader
 import java.io.BufferedWriter
 import java.io.ByteArrayInputStream
+import java.io.ByteArrayOutputStream
+import java.io.InputStream
 import java.io.InputStreamReader
+import java.io.OutputStream
 import java.io.OutputStreamWriter
 import java.net.InetAddress
 import java.net.InetSocketAddress
 import java.net.Socket
 import java.net.UnknownHostException
+import java.nio.ByteBuffer
+import java.nio.charset.Charset
+import java.nio.charset.CodingErrorAction
 import java.security.KeyStore
 import java.security.SecureRandom
 import java.text.SimpleDateFormat
@@ -107,7 +113,13 @@ data class IrcConfig(
     val readTimeoutMs: Int = ConnectionConstants.SOCKET_READ_TIMEOUT_MS,
     val tcpNoDelay: Boolean = true,
     val keepAlive: Boolean = ConnectionConstants.TCP_KEEPALIVE,
-    val ctcpVersionReply: String = "HexDroid v${BuildConfig.VERSION_NAME} - https://hexdroid.boxlabs.uk/"
+    val ctcpVersionReply: String = "HexDroid v${BuildConfig.VERSION_NAME} - https://hexdroid.boxlabs.uk/",
+    /**
+     * Character encoding for this connection.
+     * - "auto" = try UTF-8, auto-detect non-UTF-8 encodings
+     * - Or explicit: "UTF-8", "windows-1251", "ISO-8859-1", etc.
+     */
+    val encoding: String = "auto"
 )
 
 sealed class IrcEvent {
@@ -358,23 +370,65 @@ class IrcClient(val config: IrcConfig) {
     private fun casefold(s: String): String {
         val cm = caseMapping.lowercase(Locale.ROOT)
         val sb = StringBuilder(s.length)
+        
         for (ch0 in s) {
             var ch = ch0
-            if (ch in 'A'..'Z') ch = (ch.code + 32).toChar()
-            if (cm == "rfc1459" || cm == "strict-rfc1459") {
-                ch = when (ch) {
-                    '[', '{' -> '{'
-                    ']', '}' -> '}'
-                    '\\', '|' -> '|'
-                    else -> ch
-                }
-                if (cm == "rfc1459") {
+            
+            // Standard ASCII case folding (always applied)
+            if (ch in 'A'..'Z') {
+                ch = (ch.code + 32).toChar()
+            }
+            
+            when {
+                cm == "rfc1459" || cm == "strict-rfc1459" -> {
                     ch = when (ch) {
+                        '[', '{' -> '{'
+                        ']', '}' -> '}'
+                        '\\', '|' -> '|'
+                        else -> ch
+                    }
+                    if (cm == "rfc1459") {
+                        ch = when (ch) {
+                            '^', '~' -> '~'
+                            else -> ch
+                        }
+                    }
+                }
+                
+                cm == "ascii" -> {
+                    // ASCII-only: just the A-Z conversion above
+                }
+                
+                // Handle Bulgarian/Cyrillic case mapping
+                // Seen as: CASEMAPPING=BulgarianCyrillic+EnglishAlphabet
+                cm.contains("bulgarian") || cm.contains("cyrillic") -> {
+                    // Bulgarian Cyrillic uppercase (А-Я) to lowercase (а-я)
+                    // А (U+0410) through Я (U+042F) -> а (U+0430) through я (U+044F)
+                    if (ch.code in 0x0410..0x042F) {
+                        ch = (ch.code + 0x20).toChar()
+                    }
+                    // Also handle RFC1459 special chars since these networks may use them
+                    ch = when (ch) {
+                        '[', '{' -> '{'
+                        ']', '}' -> '}'
+                        '\\', '|' -> '|'
+                        '^', '~' -> '~'
+                        else -> ch
+                    }
+                }
+                
+                // Default: treat unknown mappings as rfc1459-like
+                else -> {
+                    ch = when (ch) {
+                        '[', '{' -> '{'
+                        ']', '}' -> '}'
+                        '\\', '|' -> '|'
                         '^', '~' -> '~'
                         else -> ch
                     }
                 }
             }
+            
             sb.append(ch)
         }
         return sb.toString()
@@ -785,13 +839,25 @@ class IrcClient(val config: IrcConfig) {
             send(IrcEvent.ServerText("*** TLS: $info"))
         }
 
-        val br = BufferedReader(InputStreamReader(s.getInputStream(), Charsets.UTF_8))
-        val bw = BufferedWriter(OutputStreamWriter(s.getOutputStream(), Charsets.UTF_8))
+        // Set up encoding-aware I/O using EncodingHelper
+        val inputStream = s.getInputStream()
+        val outputStream = s.getOutputStream()
+        
+        // Create line reader with encoding detection
+        val lineReader = EncodingLineReader(inputStream, config.encoding)
+        
+        // Report encoding mode
+        if (config.encoding.equals("auto", ignoreCase = true)) {
+            send(IrcEvent.ServerText("*** Encoding: auto-detect (starting with UTF-8)"))
+        } else {
+            send(IrcEvent.ServerText("*** Encoding: ${config.encoding}"))
+        }
 
         suspend fun writeLine(line: String) = withContext(Dispatchers.IO) {
-            bw.write(line)
-            bw.write("\r\n")
-            bw.flush()
+            val bytes = EncodingHelper.encode(line, lineReader.encoding)
+            outputStream.write(bytes)
+            outputStream.write("\r\n".toByteArray(Charsets.US_ASCII))
+            outputStream.flush()
         }
 
         val writerJob = launch(Dispatchers.IO) {
@@ -1095,8 +1161,19 @@ val numericHandlers: Map<String, suspend (IrcMessage, Long?, Boolean, Long) -> U
 			writeLine("USER ${config.username} 0 * :${config.realname}")
 			send(IrcEvent.Connected("${config.host}:${config.port}"))
 
+			// Track if we've notified about encoding detection
+			var encodingNotified = false
+
 			while (true) {
-				val line = withContext(Dispatchers.IO) { br.readLine() } ?: break
+				val prevEncoding = lineReader.encoding
+				val line = withContext(Dispatchers.IO) { lineReader.readLine() } ?: break
+				
+				// Notify user if encoding was auto-detected and changed
+				if (!encodingNotified && lineReader.hasDetectedNonUtf8() && prevEncoding != lineReader.encoding) {
+					send(IrcEvent.ServerText("*** Detected encoding: ${lineReader.encoding}"))
+					encodingNotified = true
+				}
+				
 				send(IrcEvent.ServerLine(line))
 				val msg = parser.parse(line) ?: continue
 

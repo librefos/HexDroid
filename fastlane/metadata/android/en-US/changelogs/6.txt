@@ -1,0 +1,5 @@
+Improve usability, UI & App Intro
+Added several new commands.
+/ignore - Added per-network ignore lists (can also be found in Settings)
+/dns 
+/find, /search <search> - Search through scrollback logs
