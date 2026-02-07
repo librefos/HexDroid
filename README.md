@@ -124,7 +124,7 @@ cd hexdroid
 ## Quick Start
 
 1. Open the app and tap **Networks**
-2. Tap **Add** to create a new network profile
+2. Tap **+** to create a new network profile
 3. Enter the server hostname and port (typically 6697 for TLS)
 4. Set your nickname
 5. (Optional) Configure SASL authentication
