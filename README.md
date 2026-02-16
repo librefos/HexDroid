@@ -1,4 +1,10 @@
 # HexDroid
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![Android](https://img.shields.io/badge/Android-8.0%2B-green.svg)](https://developer.android.com)
+[![Kotlin](https://img.shields.io/badge/Kotlin-100%25-7F52FF.svg)](https://kotlinlang.org)
+[![GitHub release](https://img.shields.io/github/v/release/boxlabss/HexDroid)](https://github.com/boxlabss/HexDroid/releases)
+[![GitHub stars](https://img.shields.io/github/stars/boxlabss/HexDroid)](https://github.com/boxlabss/HexDroid/stargazers)
+[![Build](https://github.com/boxlabss/HexDroid/actions/workflows/build.yml/badge.svg)](https://github.com/boxlabss/HexDroid/actions)
 
 A fast, modern IRC client for Android.
 
@@ -60,13 +66,14 @@ HexDroid implements modern IRCv3 specifications:
   - KOI8-R
   - ISO-8859-1, ISO-8859-15
   - GB2312, Big5, Shift_JIS, EUC-JP, EUC-KR
+and more
 
 ### DCC Transfers
 
 - DCC SEND and DCC CHAT support
 - Configurable incoming port range
 - Transfer progress tracking
-- Files saved to app storage by default
+- Files saved to Downloads by default
 
 ### User Interface
 
@@ -150,6 +157,7 @@ HexDroid supports standard IRC commands. Commands are case-insensitive.
 | `/quit [reason]` | Disconnect from the server |
 | `/whois <nick>` | Get information about a user |
 | `/topic [#channel] [text]` | View or set channel topic |
+| `/close [#channel | user]` | Part and close a channel, or close a query |
 
 ### Channel Operator Commands
 
