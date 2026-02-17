@@ -81,9 +81,8 @@ android {
     }
 
     // Reproducible builds: disable non-deterministic PNG crunching
-    @Suppress("DEPRECATION")
-    aaptOptions {
-        cruncherEnabled = false
+    androidResources {
+        noCompress += "png"
     }
 
     packaging {
