@@ -218,4 +218,10 @@
     <string name="transfers_error_format">خطأ: %1$s</string>
     <string name="transfers_outgoing_format">صادر: %1$s إلى %2$s</string>
     <string name="transfers_bytes_sent_format">تم إرسال %1$d بايت</string>
+
+    <string name="list_channels">القنوات</string>
+    <string name="list_search_label">البحث في القنوات / المواضيع</string>
+    <string name="list_loading_format">جارٍ التحميل… (%1$d)</string>
+    <string name="list_channel_count_format">%1$d قنوات</string>
+    <string name="list_join_action">انضمام</string>
 </resources>

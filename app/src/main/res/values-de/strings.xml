@@ -241,4 +241,10 @@
     <string name="transfers_error_format">Fehler: %1$s</string>
     <string name="transfers_outgoing_format">Ausgehend: %1$s an %2$s</string>
     <string name="transfers_bytes_sent_format">%1$d Bytes gesendet</string>
+
+    <string name="list_channels">Kanäle</string>
+    <string name="list_search_label">Kanäle / Thema suchen</string>
+    <string name="list_loading_format">Wird geladen… (%1$d)</string>
+    <string name="list_channel_count_format">%1$d Kanäle</string>
+    <string name="list_join_action">Beitreten</string>
 </resources>

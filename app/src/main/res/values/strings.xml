@@ -297,6 +297,12 @@
     <string name="transfers_outgoing_format">Outgoing: %1$s to %2$s</string>
     <string name="transfers_bytes_sent_format">%1$d bytes sent</string>
 
+    <string name="list_channels">Channels</string>
+    <string name="list_search_label">Search channels / topic</string>
+    <string name="list_loading_format">Loading… (%1$d)</string>
+    <string name="list_channel_count_format">%1$d channels</string>
+    <string name="list_join_action">Join</string>
+
     <!-- Language names (native) – not translated -->
     <string name="lang_en" translatable="false">English</string>
     <string name="lang_de" translatable="false">Deutsch</string>

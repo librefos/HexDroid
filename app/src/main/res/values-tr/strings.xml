@@ -221,4 +221,10 @@
     <string name="transfers_error_format">Hata: %1$s</string>
     <string name="transfers_outgoing_format">Giden: %1$s, alıcı %2$s</string>
     <string name="transfers_bytes_sent_format">%1$d bayt gönderildi</string>
+
+    <string name="list_channels">Kanallar</string>
+    <string name="list_search_label">Kanal / konu ara</string>
+    <string name="list_loading_format">Yükleniyor… (%1$d)</string>
+    <string name="list_channel_count_format">%1$d kanal</string>
+    <string name="list_join_action">Katıl</string>
 </resources>

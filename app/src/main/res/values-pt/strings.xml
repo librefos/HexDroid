@@ -280,4 +280,10 @@
     <string name="transfers_error_format">Erro: %1$s</string>
     <string name="transfers_outgoing_format">Enviando: %1$s para %2$s</string>
     <string name="transfers_bytes_sent_format">%1$d bytes enviados</string>
+
+    <string name="list_channels">Canais</string>
+    <string name="list_search_label">Pesquisar canais / tópico</string>
+    <string name="list_loading_format">Carregando… (%1$d)</string>
+    <string name="list_channel_count_format">%1$d canais</string>
+    <string name="list_join_action">Entrar</string>
 </resources>

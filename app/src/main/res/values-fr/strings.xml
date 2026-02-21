@@ -248,4 +248,10 @@
     <string name="transfers_error_format">Erreur : %1$s</string>
     <string name="transfers_outgoing_format">Sortant : %1$s vers %2$s</string>
     <string name="transfers_bytes_sent_format">%1$d octets envoyés</string>
+
+    <string name="list_channels">Canaux</string>
+    <string name="list_search_label">Rechercher des canaux / sujet</string>
+    <string name="list_loading_format">Chargement… (%1$d)</string>
+    <string name="list_channel_count_format">%1$d canaux</string>
+    <string name="list_join_action">Rejoindre</string>
 </resources>
