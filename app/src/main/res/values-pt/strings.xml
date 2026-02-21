@@ -179,6 +179,13 @@
     <string name="tour_replay_body">Você pode rever este guia a qualquer momento nas Configurações.</string>
 
     <string name="about_title">Sobre</string>
+    <string name="about_subtitle">Cliente IRC para Android</string>
+    <string name="about_version">Versão %1$s</string>
+    <string name="about_doc_support">Documentação e Suporte</string>
+    <string name="about_doc_support_desc">Visite o site para guias, perguntas frequentes e para relatar problemas.</string>
+    <string name="about_open_website">Abrir site</string>
+    <string name="about_free_app_by">HexDroid - Um aplicativo gratuito (e sem anúncios) por</string>
+
     <string name="transfers_title">Transferência de arquivos</string>
     <string name="ignore_title">Lista de ignorados</string>
     <string name="list_title">Lista de canais</string>

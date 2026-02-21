@@ -120,6 +120,13 @@
     <string name="tour_replay_body">Turu istediğiniz zaman Ayarlar\'dan tekrarlayabilirsiniz.</string>
 
     <string name="about_title">Hakkında</string>
+    <string name="about_subtitle">Android için IRC İstemcisi</string>
+    <string name="about_version">Sürüm %1$s</string>
+    <string name="about_doc_support">Belgeler ve Destek</string>
+    <string name="about_doc_support_desc">Kılavuzlar, SSS\'ler ve sorun bildirmek için web sitesini ziyaret edin.</string>
+    <string name="about_open_website">Web Sitesini Aç</string>
+    <string name="about_free_app_by">HexDroid - Ücretsiz (ve reklamsız) bir uygulama, geliştiren:</string>
+
     <string name="transfers_title">Aktarımlar</string>
     <string name="ignore_title">Yoksayma listesi</string>
     <string name="list_title">Kanal listesi</string>

@@ -147,6 +147,13 @@
     <string name="tour_replay_body">Vous pouvez relancer la visite à tout moment depuis les Paramètres.</string>
 
     <string name="about_title">À propos</string>
+    <string name="about_subtitle">Client IRC pour Android</string>
+    <string name="about_version">Version %1$s</string>
+    <string name="about_doc_support">Documentation et assistance</string>
+    <string name="about_doc_support_desc">Visitez le site Web pour des guides, des FAQ et pour signaler des problèmes.</string>
+    <string name="about_open_website">Ouvrir le site Web</string>
+    <string name="about_free_app_by">HexDroid - Une application gratuite (et sans publicité) par</string>
+
     <string name="transfers_title">Transferts</string>
     <string name="ignore_title">Liste d\'ignorés</string>
     <string name="list_title">Liste des canaux</string>
