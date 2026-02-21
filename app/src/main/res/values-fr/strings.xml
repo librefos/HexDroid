@@ -215,4 +215,37 @@
     <string name="netedit_section_ircv3">Capacités IRCv3.x</string>
     <string name="netedit_ircv3_advanced">Afficher les options avancées</string>
     <string name="netedit_ircv3_basic_desc">Fonctionnalités IRCv3 de base activées par défaut. Activez pour voir les options avancées.</string>
+
+    <string name="transfers_dcc_disabled_warning">DCC est actuellement désactivé. Activez-le pour envoyer/accepter des fichiers.</string>
+    <string name="transfers_dcc_send_mode">Mode d\'envoi DCC</string>
+    <string name="transfers_mode_auto">Auto</string>
+    <string name="transfers_mode_active">Actif</string>
+    <string name="transfers_mode_passive">Passif</string>
+    <string name="transfers_mode_auto_desc">Auto : essaie le DCC Passif ou revient à Actif s\'il n\'y a pas de réponse.</string>
+    <string name="transfers_mode_active_desc">Actif : DCC SEND classique (le récepteur se connecte à vous).</string>
+    <string name="transfers_mode_passive_desc">Passif : demande au récepteur d\'ouvrir un port, puis vous vous y connectez.</string>
+    <string name="transfers_send_file">Envoyer un fichier</string>
+    <string name="transfers_target_nick">Pseudo cible</string>
+    <string name="transfers_pick_file">Choisir le fichier à envoyer</string>
+    <string name="transfers_dcc_chat">DCC CHAT</string>
+    <string name="transfers_start_dcc_chat">Démarrer DCC CHAT</string>
+    <string name="transfers_incoming_chat_offers">Offres de chat entrantes</string>
+    <string name="transfers_no_chat_offers">Aucune offre de chat pour le moment.</string>
+    <string name="transfers_from_chat_offer">De %1$s : DCC CHAT (%2$s)</string>
+    <string name="action_accept">Accepter</string>
+    <string name="action_reject">Rejeter</string>
+    <string name="transfers_incoming_offers">Offres entrantes</string>
+    <string name="transfers_no_offers">Aucune offre pour le moment.</string>
+    <string name="transfers_from_file_offer">De %1$s : %2$s%3$s</string>
+    <string name="transfers_passive_suffix"> (passif)</string>
+    <string name="transfers_reply_port_waiting">port de réponse : (en attente)</string>
+    <string name="transfers_size_bytes_format">%1$s • %2$d octets</string>
+    <string name="transfers_section_title">Transferts</string>
+    <string name="transfers_no_transfers">Aucun transfert en cours.</string>
+    <string name="transfers_incoming_format">Entrant : %1$s de %2$s</string>
+    <string name="transfers_progress_format">%1$d/%2$d octets • %3$s%%</string>
+    <string name="transfers_share_file">Partager le fichier</string>
+    <string name="transfers_error_format">Erreur : %1$s</string>
+    <string name="transfers_outgoing_format">Sortant : %1$s vers %2$s</string>
+    <string name="transfers_bytes_sent_format">%1$d octets envoyés</string>
 </resources>

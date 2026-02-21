@@ -185,4 +185,37 @@
     <string name="netedit_section_ircv3">قدرات IRCv3.x</string>
     <string name="netedit_ircv3_advanced">إظهار الخيارات المتقدمة</string>
     <string name="netedit_ircv3_basic_desc">ميزات IRCv3 الأساسية مفعلة افتراضيًا. قم بالتبديل لرؤية الخيارات المتقدمة.</string>
+
+    <string name="transfers_dcc_disabled_warning">DCC معطل حالياً. قم بتشغيله لإرسال/استقبال الملفات.</string>
+    <string name="transfers_dcc_send_mode">وضع إرسال DCC</string>
+    <string name="transfers_mode_auto">تلقائي</string>
+    <string name="transfers_mode_active">نشط</string>
+    <string name="transfers_mode_passive">سلبي</string>
+    <string name="transfers_mode_auto_desc">تلقائي: حاول استخدام DCC السلبي أو تراجع إلى النشط إذا لم يكن هناك رد.</string>
+    <string name="transfers_mode_active_desc">نشط: إرسال DCC الكلاسيكي (المستقبل يتصل بك).</string>
+    <string name="transfers_mode_passive_desc">سلبي: اطلب من المستقبل فتح منفذ، ثم تتصل به.</string>
+    <string name="transfers_send_file">إرسال ملف</string>
+    <string name="transfers_target_nick">الاسم المستعار (Nick) الهدف</string>
+    <string name="transfers_pick_file">اختر ملفاً لإرساله</string>
+    <string name="transfers_dcc_chat">دردشة DCC</string>
+    <string name="transfers_start_dcc_chat">بدء دردشة DCC</string>
+    <string name="transfers_incoming_chat_offers">عروض الدردشة الواردة</string>
+    <string name="transfers_no_chat_offers">لا توجد عروض دردشة حتى الآن.</string>
+    <string name="transfers_from_chat_offer">من %1$s: دردشة DCC (%2$s)</string>
+    <string name="action_accept">قبول</string>
+    <string name="action_reject">رفض</string>
+    <string name="transfers_incoming_offers">العروض الواردة</string>
+    <string name="transfers_no_offers">لا توجد عروض حتى الآن.</string>
+    <string name="transfers_from_file_offer">من %1$s: %2$s%3$s</string>
+    <string name="transfers_passive_suffix"> (سلبي)</string>
+    <string name="transfers_reply_port_waiting">منفذ الرد: (في الانتظار)</string>
+    <string name="transfers_size_bytes_format">%1$s • %2$d بايت</string>
+    <string name="transfers_section_title">التحويلات</string>
+    <string name="transfers_no_transfers">لا توجد تحويلات قيد التقدم.</string>
+    <string name="transfers_incoming_format">وارد: %1$s من %2$s</string>
+    <string name="transfers_progress_format">%1$d/%2$d بايت • %3$s%%</string>
+    <string name="transfers_share_file">مشاركة الملف</string>
+    <string name="transfers_error_format">خطأ: %1$s</string>
+    <string name="transfers_outgoing_format">صادر: %1$s إلى %2$s</string>
+    <string name="transfers_bytes_sent_format">تم إرسال %1$d بايت</string>
 </resources>

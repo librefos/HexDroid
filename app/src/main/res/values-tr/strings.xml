@@ -188,4 +188,37 @@
     <string name="netedit_section_ircv3">IRCv3.x Yetenekleri</string>
     <string name="netedit_ircv3_advanced">Gelişmiş seçenekleri göster</string>
     <string name="netedit_ircv3_basic_desc">Temel IRCv3 özellikleri varsayılan olarak etkindir. Gelişmiş seçenekleri görmek için açın.</string>
+
+    <string name="transfers_dcc_disabled_warning">DCC şu anda devre dışı. Dosya göndermek/almak için açın.</string>
+    <string name="transfers_dcc_send_mode">DCC gönderme modu</string>
+    <string name="transfers_mode_auto">Otomatik</string>
+    <string name="transfers_mode_active">Aktif</string>
+    <string name="transfers_mode_passive">Pasif</string>
+    <string name="transfers_mode_auto_desc">Otomatik: Pasif DCC dener veya yanıt yoksa Aktif\'e döner.</string>
+    <string name="transfers_mode_active_desc">Aktif: Klasik DCC SEND (alıcı size bağlanır).</string>
+    <string name="transfers_mode_passive_desc">Pasif: Alıcıdan bir port açmasını ister, ardından siz ona bağlanırsınız.</string>
+    <string name="transfers_send_file">Dosya gönder</string>
+    <string name="transfers_target_nick">Hedef nick</string>
+    <string name="transfers_pick_file">Gönderilecek dosyayı seç</string>
+    <string name="transfers_dcc_chat">DCC SOHBET</string>
+    <string name="transfers_start_dcc_chat">DCC SOHBET başlat</string>
+    <string name="transfers_incoming_chat_offers">Gelen sohbet teklifleri</string>
+    <string name="transfers_no_chat_offers">Henüz sohbet teklifi yok.</string>
+    <string name="transfers_from_chat_offer">%1$s\'den: DCC SOHBET (%2$s)</string>
+    <string name="action_accept">Kabul Et</string>
+    <string name="action_reject">Reddet</string>
+    <string name="transfers_incoming_offers">Gelen teklifler</string>
+    <string name="transfers_no_offers">Henüz teklif yok.</string>
+    <string name="transfers_from_file_offer">%1$s\'den: %2$s%3$s</string>
+    <string name="transfers_passive_suffix"> (pasif)</string>
+    <string name="transfers_reply_port_waiting">yanıt portu: (bekleniyor)</string>
+    <string name="transfers_size_bytes_format">%1$s • %2$d bayt</string>
+    <string name="transfers_section_title">Aktarımlar</string>
+    <string name="transfers_no_transfers">Devam eden aktarım yok.</string>
+    <string name="transfers_incoming_format">Gelen: %1$s, gönderen %2$s</string>
+    <string name="transfers_progress_format">%1$d/%2$d bayt • %3$s%%</string>
+    <string name="transfers_share_file">Dosyayı paylaş</string>
+    <string name="transfers_error_format">Hata: %1$s</string>
+    <string name="transfers_outgoing_format">Giden: %1$s, alıcı %2$s</string>
+    <string name="transfers_bytes_sent_format">%1$d bayt gönderildi</string>
 </resources>

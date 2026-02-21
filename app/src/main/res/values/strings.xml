@@ -264,6 +264,39 @@
     <string name="netedit_ircv3_advanced">Show advanced options</string>
     <string name="netedit_ircv3_basic_desc">Basic IRCv3 features enabled by default. Switch on to see advanced options.</string>
 
+    <string name="transfers_dcc_disabled_warning">DCC is currently disabled. Turn it on to send/accept files.</string>
+    <string name="transfers_dcc_send_mode">DCC send mode</string>
+    <string name="transfers_mode_auto">Auto</string>
+    <string name="transfers_mode_active">Active</string>
+    <string name="transfers_mode_passive">Passive</string>
+    <string name="transfers_mode_auto_desc">Auto: try Passive DCC or fall back to Active if there is no reply.</string>
+    <string name="transfers_mode_active_desc">Active: classic DCC SEND (the receiver connects to you).</string>
+    <string name="transfers_mode_passive_desc">Passive: request the receiver to open a port, then you connect to them.</string>
+    <string name="transfers_send_file">Send file</string>
+    <string name="transfers_target_nick">Target nick</string>
+    <string name="transfers_pick_file">Pick file to send</string>
+    <string name="transfers_dcc_chat">DCC CHAT</string>
+    <string name="transfers_start_dcc_chat">Start DCC CHAT</string>
+    <string name="transfers_incoming_chat_offers">Incoming chat offers</string>
+    <string name="transfers_no_chat_offers">No chat offers yet.</string>
+    <string name="transfers_from_chat_offer">From %1$s: DCC CHAT (%2$s)</string>
+    <string name="action_accept">Accept</string>
+    <string name="action_reject">Reject</string>
+    <string name="transfers_incoming_offers">Incoming offers</string>
+    <string name="transfers_no_offers">No offers yet.</string>
+    <string name="transfers_from_file_offer">From %1$s: %2$s%3$s</string>
+    <string name="transfers_passive_suffix"> (passive)</string>
+    <string name="transfers_reply_port_waiting">reply-port: (waiting)</string>
+    <string name="transfers_size_bytes_format">%1$s • %2$d bytes</string>
+    <string name="transfers_section_title">Transfers</string>
+    <string name="transfers_no_transfers">No transfers in progress.</string>
+    <string name="transfers_incoming_format">Incoming: %1$s from %2$s</string>
+    <string name="transfers_progress_format">%1$d/%2$d bytes • %3$s%%</string>
+    <string name="transfers_share_file">Share file</string>
+    <string name="transfers_error_format">Error: %1$s</string>
+    <string name="transfers_outgoing_format">Outgoing: %1$s to %2$s</string>
+    <string name="transfers_bytes_sent_format">%1$d bytes sent</string>
+
     <!-- Language names (native) – not translated -->
     <string name="lang_en" translatable="false">English</string>
     <string name="lang_de" translatable="false">Deutsch</string>
