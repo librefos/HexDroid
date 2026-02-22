@@ -5,7 +5,7 @@
 [![GitHub release](https://img.shields.io/github/v/release/boxlabss/HexDroid)](https://github.com/boxlabss/HexDroid/releases)
 [![GitHub stars](https://img.shields.io/github/stars/boxlabss/HexDroid)](https://github.com/boxlabss/HexDroid/stargazers)
 [![Build](https://github.com/boxlabss/HexDroid/actions/workflows/build.yml/badge.svg)](https://github.com/boxlabss/HexDroid/actions)
-[![RB Status](https://shields.rbtlog.dev/simple/com.boxlabs.hexdroid](https://shields.rbtlog.dev/com.boxlabs.hexdroid)
+[![RB Status](https://shields.rbtlog.dev/simple/com.boxlabs.hexdroid)](https://shields.rbtlog.dev/com.boxlabs.hexdroid)
 
 A fast, modern IRC client for Android.
 
